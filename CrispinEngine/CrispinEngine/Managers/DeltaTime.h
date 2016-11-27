@@ -25,7 +25,7 @@ Email: christianbenner35@gmail.com
 #ifndef DeltaTime_h__
 #define DeltaTime_h__
 
-#include "Statements.h"
+#include "../Statements.h"
 #include <SDL2/SDL.h>
 #include <algorithm>
 #include <vector>

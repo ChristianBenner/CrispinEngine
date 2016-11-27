@@ -1,5 +1,5 @@
 /*
-This is an object class developed for the Crispin
+This is an OpenGL sprite class developed for the Crispin
 Engine
 
 Use it for any of your projects, commercial or otherwise,
@@ -15,38 +15,33 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
 ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
 OF THIS SOFTWARE.
 
-April 18 2016
+March 26 2016
 Author: Christian Benner
 Email: christianbenner35@gmail.com
 */
 
 #pragma once
-
-#ifndef ObjectRectangle_h__
-#define ObjectRectangle_h__
-
-#include "VirtualObject.h"
-#include "SpriteBatch.h"
+#include <GL/glew.h>
+#include "../Objects/Data/GLTexture.h"
+#include <string>
 
 namespace Crispin {
-	class ObjectRectangle : public VirtualObject
+	class Sprite
 	{
 	public:
-		ObjectRectangle();
-		~ObjectRectangle();
+		Sprite();
+		~Sprite();
 
-		void update(const float& deltaTime);
+		void init(float x, float y, float width, float height, std::string texturePath);
 
-		void draw(SpriteBatch& renderBatch);
+		void draw();
 
-		void setDimensions(const glm::vec2& position,
-			const glm::vec2& size);
-
-		glm::vec4 getDimensions() {
-			return glm::vec4(m_vertices[0], m_vertices[1]);
-		}
+	private:
+		float m_x;
+		float m_y;
+		float m_width;
+		float m_height;
+		GLuint m_vboID;
+		GLTexture m_texture;
 	};
 }
-
-#endif
-

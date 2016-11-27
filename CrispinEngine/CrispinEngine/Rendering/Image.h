@@ -23,9 +23,10 @@ Email: christianbenner35@gmail.com
 #pragma once
 #include <GL\glew.h>
 #include <string>
-#include "fileio.h"
-#include "GLtexture.h"
-#include "picopng.h"
+#include "../Loading/FileIO.h"
+#include "../Objects/Data/GLTexture.h"
+#include "../Loading/PicoPNG.h"
+
 namespace Crispin {
 	class Image
 	{

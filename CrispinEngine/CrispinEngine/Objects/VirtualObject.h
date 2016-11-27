@@ -26,7 +26,7 @@ Email: christianbenner35@gmail.com
 #include <vector>
 #include <glm/glm.hpp>
 
-#include "Vertex.h"
+#include "../Objects/Data/Vertex.h"
 
 /*The virtual object will be the parent class to all objects
 used in a game. It will have vector of vec2s for positional

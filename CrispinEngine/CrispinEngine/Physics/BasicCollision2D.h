@@ -1,5 +1,5 @@
 /*
-This is a resource loading class developed for the Crispin
+This is a collision detection class developed for the Crispin
 Engine
 
 Use it for any of your projects, commercial or otherwise,
@@ -15,22 +15,33 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
 ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
 OF THIS SOFTWARE.
 
-March 26 2016
+April 19 2016
 Author: Christian Benner
 Email: christianbenner35@gmail.com
 */
 
 #pragma once
-#include "TextureCache.h"
-#include <string>
+
+#ifndef BasicCollision_h__
+#define BasicCollision_h__
+
+#include "../Objects/VirtualObject.h"
+
+#include <tuple>
+
 namespace Crispin {
-	class Resource
-	{
-	public:
-		static GLTexture getTexture(std::string filepath);
-		static void removeTexture(std::string filepath);
-		//	static GLuint boundTexture;
-	private:
-		static TextureCache m_textureCache;
+	enum Direction {
+		UP,
+		RIGHT,
+		DOWN,
+		LEFT
 	};
+
+	typedef std::tuple<bool, Direction, glm::vec2> Collision;
+
+	extern Collision rectangleCollision(const glm::vec4& obj1, const glm::vec4& obj2);
+	extern Collision rectangleOuterCollision(const glm::vec4& obj1, const glm::vec4& borders);
+	extern Collision ballToRectangleCollision(const glm::vec2& ball, const float& radius, const glm::vec4& rectangle);
 }
+
+#endif

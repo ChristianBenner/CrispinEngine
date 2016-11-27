@@ -23,7 +23,7 @@ Email: christianbenner35@gmail.com
 #pragma once
 #include <GL/glew.h>
 #include <string>
-#include "Statements.h"
+#include "../Statements.h"
 #include <fstream>
 #include <vector>
 

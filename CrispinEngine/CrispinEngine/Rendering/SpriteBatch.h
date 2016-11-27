@@ -26,7 +26,7 @@ Email: christianbenner35@gmail.com
 #include <glm/glm.hpp>
 #include <vector>
 
-#include "Vertex.h"
+#include "../Objects/Data/Vertex.h"
 
 namespace Crispin {
 

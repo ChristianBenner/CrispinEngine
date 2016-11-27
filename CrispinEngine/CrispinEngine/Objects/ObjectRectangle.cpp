@@ -1,5 +1,5 @@
 #include "ObjectRectangle.h"
-#include "Resource.h"
+#include "../Loading/Resource.h"
 
 namespace Crispin {
 	ObjectRectangle::ObjectRectangle()

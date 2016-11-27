@@ -1,5 +1,5 @@
 /*
-This is a file loading class developed for the Crispin
+This is a GLTexture manager class developed for the Crispin
 Engine
 
 Use it for any of your projects, commercial or otherwise,
@@ -21,13 +21,27 @@ Email: christianbenner35@gmail.com
 */
 
 #pragma once
-#include <vector>
-#include <fstream>
-#include "Statements.h"
+
+#ifndef TextureCache_h__
+#define TextureCache_h__
+
+#include <map>
+#include "../Objects/Data/GLTexture.h"
+
 namespace Crispin {
-	class FileIO
+	//This caches the textures so that multiple sprites can use the same textures
+	class TextureCache
 	{
 	public:
-		static bool readFileToBuffer(std::string filepath, std::vector<unsigned char>& buffer);
+		TextureCache();
+		~TextureCache();
+
+		GLTexture getTexture(std::string texturePath);
+		void removeTexture(std::string texturePath);
+	private:
+		std::map<std::string, GLTexture> m_textureMap;
 	};
+
 }
+
+#endif

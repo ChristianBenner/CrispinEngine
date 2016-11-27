@@ -1,6 +1,6 @@
 #include "Sprite.h"
-#include "Vertex.h"
-#include "Resource.h"
+#include "../Objects/Data/Vertex.h"
+#include "../Loading/Resource.h"
 
 #include <cstddef>
 

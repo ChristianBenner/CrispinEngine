@@ -1,5 +1,5 @@
 /*
-This is an OpenGL sprite class developed for the Crispin
+This is a resource loading class developed for the Crispin
 Engine
 
 Use it for any of your projects, commercial or otherwise,
@@ -21,27 +21,16 @@ Email: christianbenner35@gmail.com
 */
 
 #pragma once
-#include <GL/glew.h>
-#include "GLTexture.h"
+#include "../Rendering/TextureCache.h"
 #include <string>
-
 namespace Crispin {
-	class Sprite
+	class Resource
 	{
 	public:
-		Sprite();
-		~Sprite();
-
-		void init(float x, float y, float width, float height, std::string texturePath);
-
-		void draw();
-
+		static GLTexture getTexture(std::string filepath);
+		static void removeTexture(std::string filepath);
+		//	static GLuint boundTexture;
 	private:
-		float m_x;
-		float m_y;
-		float m_width;
-		float m_height;
-		GLuint m_vboID;
-		GLTexture m_texture;
+		static TextureCache m_textureCache;
 	};
 }

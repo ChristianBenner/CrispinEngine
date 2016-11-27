@@ -23,10 +23,10 @@ Email: christianbenner35@gmail.com
 #pragma once
 #include <glm\glm.hpp>
 #include <functional>
-#include "Vertex.h"
-#include "SpriteBatch.h"
-#include "Resource.h"
-#include "Statements.h"
+#include "../Objects/Data/Vertex.h"
+#include "../Rendering/SpriteBatch.h"
+#include "../Loading/Resource.h"
+#include "../Statements.h"
 
 namespace Crispin {
 	class Particle2D {

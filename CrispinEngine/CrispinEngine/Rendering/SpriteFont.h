@@ -30,7 +30,7 @@ Modified By: Benjamin Arnold, Christian Benner
 #include <map>
 #include <vector>
 
-#include "Vertex.h"
+#include "../Objects/Data/Vertex.h"
 
 namespace Crispin {
 

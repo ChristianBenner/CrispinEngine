@@ -1,5 +1,5 @@
 /*
-This is a collision detection class developed for the Crispin
+This is an object class developed for the Crispin
 Engine
 
 Use it for any of your projects, commercial or otherwise,
@@ -15,33 +15,38 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
 ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
 OF THIS SOFTWARE.
 
-April 19 2016
+April 18 2016
 Author: Christian Benner
 Email: christianbenner35@gmail.com
 */
 
 #pragma once
 
-#ifndef BasicCollision_h__
-#define BasicCollision_h__
+#ifndef ObjectRectangle_h__
+#define ObjectRectangle_h__
 
 #include "VirtualObject.h"
-
-#include <tuple>
+#include "../Rendering/SpriteBatch.h"
 
 namespace Crispin {
-	enum Direction {
-		UP,
-		RIGHT,
-		DOWN,
-		LEFT
+	class ObjectRectangle : public VirtualObject
+	{
+	public:
+		ObjectRectangle();
+		~ObjectRectangle();
+
+		void update(const float& deltaTime);
+
+		void draw(SpriteBatch& renderBatch);
+
+		void setDimensions(const glm::vec2& position,
+			const glm::vec2& size);
+
+		glm::vec4 getDimensions() {
+			return glm::vec4(m_vertices[0], m_vertices[1]);
+		}
 	};
-
-	typedef std::tuple<bool, Direction, glm::vec2> Collision;
-
-	extern Collision rectangleCollision(const glm::vec4& obj1, const glm::vec4& obj2);
-	extern Collision rectangleOuterCollision(const glm::vec4& obj1, const glm::vec4& borders);
-	extern Collision ballToRectangleCollision(const glm::vec2& ball, const float& radius, const glm::vec4& rectangle);
 }
 
 #endif
+
