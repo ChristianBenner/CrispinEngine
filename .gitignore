@@ -27,3 +27,12 @@
 *.exe
 *.out
 *.app
+/CrispinEngine/CrispinEngine/Debug/CrispinEngine.tlog
+/CrispinEngine/CrispinEngine/Debug
+/CrispinEngine/Debug
+/CrispinEngine/.vs/CrispinEngine/v14/.suo
+/CrispinEngine/CrispinEngine/CrispinEngine.vcxproj
+/CrispinEngine/CrispinEngine/CrispinEngine.vcxproj.filters
+/CrispinEngine/CrispinEngine.sln
+/CrispinEngine/CrispinEngine.VC.db
+/CrispinEngine/CrispinEngine.VC.VC.opendb
