@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameTemplate", "GameTemplate\GameTemplate.vcxproj", "{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A} = {69D9B05E-BAC5-45DD-ADCD-36887294008A}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrispinEngine", "..\CrispinEngine\CrispinEngine\CrispinEngine.vcxproj", "{69D9B05E-BAC5-45DD-ADCD-36887294008A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Debug|x64.ActiveCfg = Debug|x64
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Debug|x64.Build.0 = Debug|x64
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Debug|x86.ActiveCfg = Debug|Win32
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Debug|x86.Build.0 = Debug|Win32
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Release|x64.ActiveCfg = Release|x64
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Release|x64.Build.0 = Release|x64
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Release|x86.ActiveCfg = Release|Win32
+		{6CB00DF2-1277-4FB9-A8C5-EE13AC9E2BDE}.Release|x86.Build.0 = Release|Win32
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Debug|x64.ActiveCfg = Debug|x64
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Debug|x64.Build.0 = Debug|x64
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Debug|x86.ActiveCfg = Debug|Win32
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Debug|x86.Build.0 = Debug|Win32
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Release|x64.ActiveCfg = Release|x64
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Release|x64.Build.0 = Release|x64
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Release|x86.ActiveCfg = Release|Win32
+		{69D9B05E-BAC5-45DD-ADCD-36887294008A}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

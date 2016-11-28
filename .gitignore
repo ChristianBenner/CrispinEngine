@@ -33,7 +33,6 @@
 /CrispinEngine/.vs/CrispinEngine/v14/.suo
 /CrispinEngine/CrispinEngine/CrispinEngine.vcxproj
 /CrispinEngine/CrispinEngine/CrispinEngine.vcxproj.filters
-/CrispinEngine/CrispinEngine.sln
 /CrispinEngine/CrispinEngine.VC.db
 /CrispinEngine/CrispinEngine.VC.VC.opendb
 /CrispinEngine/CrispinEngine/x64/Debug/CrispinEngine.tlog
@@ -59,4 +58,11 @@
 /GameTemplate/GameTemplate/GameTemplate.vcxproj
 /GameTemplate/GameTemplate.VC.VC.opendb
 /GameTemplate/GameTemplate.VC.db
-/GameTemplate/GameTemplate.sln
+/CrispinEngine/CrispinEngine/x64/Release/CrispinEngine.tlog
+/GameTemplate/GameTemplate/x64/Debug/GameTemplate.tlog
+/GameTemplate/GameTemplate/x64/Release/GameTemplate.tlog
+/GameTemplate/GameTemplate/x64/Release
+/GameTemplate/Win32
+/GameTemplate/x64
+/GameTemplate/GameTemplate/x64/Debug
+/CrispinEngine/CrispinEngine/x64/Release
