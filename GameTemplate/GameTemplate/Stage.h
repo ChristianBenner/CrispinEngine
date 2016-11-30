@@ -6,6 +6,7 @@ public:
 
 	virtual void draw() = 0;
 	virtual bool update(short* currentStage) = 0;
+	virtual void destroy() = 0;
 };
 
 class StageData {

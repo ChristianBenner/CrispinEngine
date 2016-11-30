@@ -1,18 +1,19 @@
 #include "IntroCrispin.h"
 
-IntroCrispin::IntroCrispin(Crispin::Window* window, Crispin::AudioEngine* audio)
+IntroCrispin::IntroCrispin(Crispin::Window* window, Crispin::Audio* audio)
 {
 	// Pass through pointers to variables that will be used in initialization process
 	m_window = window;
 	m_audio = audio;
 }
 
-IntroCrispin::~IntroCrispin()
+void IntroCrispin::destroy()
 {
+	m_introSound.remove();
 }
 
 void IntroCrispin::init() {
-	m_introSound = m_audio->loadSoundEffect("Audio/SFX/introCrispin.ogg");
+	m_introSound = m_audio->loadSound("Audio/SFX/introCrispin.ogg");
 
 	initShaders();
 
@@ -26,7 +27,7 @@ void IntroCrispin::init() {
 	m_tex_logoWhite = Crispin::Resource::getTexture("Textures/logo/crispin_flat_white.png");
 	m_tex_logoRed = Crispin::Resource::getTexture("Textures/logo/crispin_flat_red.png");
 
-	m_introSound.play(0);
+	//m_introSound.play(0);
 }
 
 void IntroCrispin::initShaders() {

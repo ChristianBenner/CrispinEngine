@@ -2,7 +2,7 @@
 
 // Library/engine imports
 #include <CrispinEngine\Managers\Window.h>
-#include <CrispinEngine\Managers\AudioEngine.h>
+#include <CrispinEngine\Audio.h>
 #include <CrispinEngine\Managers\Timing.h>
 #include <CrispinEngine\Managers\InputManager.h>
 
@@ -28,7 +28,10 @@ private:
 
 	// Objects
 	Crispin::Window m_window;
-	Crispin::AudioEngine m_audio;
+	Crispin::Audio m_audio;
+	Crispin::Sound m_sound;
+	bool m_panMax;
+
 	Crispin::FpsLimiter m_timer;
 	Crispin::InputManager m_input;
 
