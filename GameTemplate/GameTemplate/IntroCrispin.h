@@ -6,7 +6,7 @@
 #include <CrispinEngine\Rendering\Camera2D.h>
 #include <CrispinEngine\Rendering\Shader.h>
 #include <CrispinEngine\Loading\Resource.h>
-#include <CrispinEngine\Audio.h>
+#include <CrispinEngine\Managers\Audio.h>
 #include <CrispinEngine\Managers\Window.h>
 
 class IntroCrispin : public Stage

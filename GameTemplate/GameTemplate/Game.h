@@ -2,7 +2,7 @@
 
 // Library/engine imports
 #include <CrispinEngine\Managers\Window.h>
-#include <CrispinEngine\Audio.h>
+#include <CrispinEngine\Managers\Audio.h>
 #include <CrispinEngine\Managers\Timing.h>
 #include <CrispinEngine\Managers\InputManager.h>
 
