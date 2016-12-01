@@ -9,7 +9,12 @@ IntroCrispin::IntroCrispin(Crispin::Window* window, Crispin::Audio* audio)
 
 void IntroCrispin::destroy()
 {
-	m_introSound.remove();
+	// Remove loaded audio
+	m_audio->removeSound(m_introSound);
+	// Remove unloaded elements from map
+	m_audio->removeUnloadedElements();
+	/// OR remove data from map if extra picky about memory
+	m_audio->removeElement(m_introSound->getID());
 }
 
 void IntroCrispin::init() {
@@ -27,7 +32,7 @@ void IntroCrispin::init() {
 	m_tex_logoWhite = Crispin::Resource::getTexture("Textures/logo/crispin_flat_white.png");
 	m_tex_logoRed = Crispin::Resource::getTexture("Textures/logo/crispin_flat_red.png");
 
-	//m_introSound.play(0);
+	m_introSound->play();
 }
 
 void IntroCrispin::initShaders() {

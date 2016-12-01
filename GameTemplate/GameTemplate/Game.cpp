@@ -41,7 +41,8 @@ short Game::init() {
 	// Audio engine
 	m_audio.init(MIX_INIT_OGG);
 	m_sound = m_audio.loadSound("Audio/SFX/test.wav");
-	m_sound.setPan(255, 0);
+	m_sound->setPan(255, 0);
+
 	// FPS Manager
 	m_timer.init(m_max_fps);
 
@@ -80,7 +81,7 @@ short Game::loop() {
 
 		if (m_input.isKeyPressed(SDLK_a)) {
 			//m_sound.setPan(255, 0);
-			m_sound.play(-1);
+			m_sound->play(-1);
 		}
 		if (m_input.isKeyPressed(SDLK_s)) {
 			//m_sound.setPan(0, 255);
@@ -88,21 +89,21 @@ short Game::loop() {
 			m_audio.~Audio();
 		}
 		
-		if (m_sound.getLeftPan() >= 255) {
+		if (m_sound->getPanLeft() >= 255) {
 			m_panMax = true;
 		}
-		else if (m_sound.getLeftPan() <= 0) {
+		else if (m_sound->getPanLeft() <= 0) {
 			m_panMax = false;
 		}
 
 		if (m_panMax) {
-			m_sound.setPan(m_sound.getLeftPan() - 5, m_sound.getRightPan() + 5);
+			m_sound->setPan(m_sound->getPanLeft() - 5, m_sound->getPanRight() + 5);
 		}
 		else {
-			m_sound.setPan(m_sound.getLeftPan() + 5, m_sound.getRightPan() - 5);
+			m_sound->setPan(m_sound->getPanLeft() + 5, m_sound->getPanRight() - 5);
 		}
 
-		printf("Pan: %d\n", m_sound.getLeftPan());
+		printf("Pan: %d\n", m_sound->getPanLeft());
 		
 		// End FPS management
 		m_current_fps = m_timer.end();
