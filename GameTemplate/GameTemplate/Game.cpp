@@ -49,7 +49,7 @@ short Game::init() {
 	m_timer.init(m_max_fps);
 
 	// Stages to array
-	m_stages.push_back(new SceneData(new Crispin::Scene::CrispinIntro(&m_window, &m_audio), 0));
+	m_sceneManager.add(new Crispin::SceneData(new Crispin::Scenes::CrispinIntro(&m_window, &m_audio), 0));
 	return 0;
 }
 
@@ -64,20 +64,9 @@ short Game::loop() {
 		// Update and draw current stage
 		update();
 
-		bool onStage = false;
-		for (std::vector<SceneData*>::iterator s = m_stages.begin(); s != m_stages.end()
-			&& !onStage; s++) {
-			onStage = (*s)->p_ID == m_currentStage;
-			if (onStage) {
-				if (!(*s)->p_stage->update(&m_currentStage)) {
-					// If stage no longer in use, de-initialize
-					(*s)->p_stage->destroy();
-					(*s)->p_stage = nullptr;
-				}else{
-					m_window.setVisible(true);
-					(*s)->p_stage->draw();
-				}
-			}
+		// If the scene is running, show the window
+		if (m_sceneManager.run(&m_currentStage)) {
+			m_window.setVisible(true);
 		}
 
 		// Buffer swap

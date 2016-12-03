@@ -33,6 +33,7 @@ private:
 
 	Crispin::FpsLimiter m_timer;
 	Crispin::InputManager m_input;
+	Crispin::SceneManager m_sceneManager;
 
 	// Data
 	std::string m_game_name;
@@ -41,7 +42,7 @@ private:
 	float m_max_fps;
 	float m_current_fps = 0.0f;
 	PlayState m_gameState = PlayState::PLAY;
-	std::vector<SceneData*> m_stages;
+	std::vector<Crispin::SceneData*> m_stages;
 	short m_currentStage = 0;
 };
 

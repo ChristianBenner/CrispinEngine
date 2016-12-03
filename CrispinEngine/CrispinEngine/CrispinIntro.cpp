@@ -2,7 +2,7 @@
 #include "Loading\Resource.h"
 
 namespace Crispin {
-	namespace Scene {
+	namespace Scenes {
 		CrispinIntro::CrispinIntro(Crispin::Window* window, Crispin::AudioManager* audio)
 		{
 			// Pass through pointers to variables that will be used in initialization process

@@ -6,7 +6,7 @@
 #include "Rendering\Shader.h"
 
 namespace Crispin {
-	namespace Scene {
+	namespace Scenes {
 		class CrispinIntro : public Scene
 		{
 		public:
