@@ -1,21 +1,21 @@
 #pragma once
-class Stage
+class Scene
 {
 public:
-	Stage();
+	Scene();
 
 	virtual void draw() = 0;
 	virtual bool update(short* currentStage) = 0;
 	virtual void destroy() = 0;
 };
 
-class StageData {
+class SceneData {
 public:
-	StageData(Stage* stage, short ID) {
+	SceneData(Scene* stage, short ID) {
 		p_stage = stage;
 		p_ID = ID;
 	}
 
-	Stage* p_stage;
+	Scene* p_stage;
 	short p_ID;
 };

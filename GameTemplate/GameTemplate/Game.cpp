@@ -48,7 +48,7 @@ short Game::init() {
 	m_timer.init(m_max_fps);
 
 	// Stages to array
-	m_stages.push_back(new StageData(new IntroCrispin(&m_window, &m_audio), 0));
+	m_stages.push_back(new SceneData(new IntroCrispin(&m_window, &m_audio), 0));
 
 	return 0;
 }
@@ -65,7 +65,7 @@ short Game::loop() {
 		update();
 
 		bool onStage = false;
-		for (std::vector<StageData*>::iterator s = m_stages.begin(); s != m_stages.end()
+		for (std::vector<SceneData*>::iterator s = m_stages.begin(); s != m_stages.end()
 			&& !onStage; s++) {
 			onStage = (*s)->p_ID == m_currentStage;
 			if (onStage) {

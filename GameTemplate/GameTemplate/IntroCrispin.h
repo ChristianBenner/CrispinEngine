@@ -1,15 +1,14 @@
 #pragma once
 
-#include "Stage.h"
-
 #include <CrispinEngine\Rendering\SpriteBatch.h>
 #include <CrispinEngine\Rendering\Camera2D.h>
 #include <CrispinEngine\Rendering\Shader.h>
 #include <CrispinEngine\Loading\Resource.h>
 #include <CrispinEngine\Managers\Audio.h>
 #include <CrispinEngine\Managers\Window.h>
+#include <CrispinEngine\Scene.h>
 
-class IntroCrispin : public Stage
+class IntroCrispin : public Scene
 {
 public:
 	// Provide the class with all the data it may need in pointers

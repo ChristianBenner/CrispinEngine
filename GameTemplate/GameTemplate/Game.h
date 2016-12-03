@@ -5,9 +5,7 @@
 #include <CrispinEngine\Managers\Audio.h>
 #include <CrispinEngine\Managers\Timing.h>
 #include <CrispinEngine\Managers\InputManager.h>
-
-// Local imports
-#include "Stage.h"
+#include <CrispinEngine\Scene.h>
 
 enum PlayState { PLAY, EXIT };
 
@@ -43,7 +41,7 @@ private:
 	float m_max_fps;
 	float m_current_fps = 0.0f;
 	PlayState m_gameState = PlayState::PLAY;
-	std::vector<StageData*> m_stages;
+	std::vector<SceneData*> m_stages;
 	short m_currentStage = 0;
 };
 
