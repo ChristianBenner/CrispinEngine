@@ -14,7 +14,7 @@ m_max_fps(60.0f)
 
 Game::~Game()
 {
-	m_audio.removeSound(&m_sound);
+	m_audio.removeMusic(&m_music);
 	m_audio.destroy();
 }
 
@@ -42,8 +42,7 @@ short Game::init() {
 
 	// Audio engine
 	m_audio.init(MIX_INIT_OGG);
-	m_sound = m_audio.loadSound("Audio/SFX/test.wav");
-	m_sound.setPan(255, 0);
+	m_music = m_audio.loadMusic("Audio/SFX/test.wav");
 
 	// FPS Manager
 	m_timer.init(m_max_fps);
@@ -91,26 +90,15 @@ short Game::loop() {
 
 // Game core update function, will update all the time
 void Game::update() {
-	// Sound sound interaction
+	// Music interaction
 	if (m_input.isKeyPressed(SDLK_a)) {
-		m_sound.play(-1);
+		m_music.play(-1);
 	}
 	if (m_input.isKeyPressed(SDLK_s)) {
-		m_audio.removeSound(&m_sound);
-	}
-
-	if (m_sound.getPanLeft() >= 255) {
-		m_panMax = true;
-	}
-	else if (m_sound.getPanLeft() <= 0) {
-		m_panMax = false;
-	}
-
-	if (m_panMax) {
-		m_sound.setPan(m_sound.getPanLeft() - 5, m_sound.getPanRight() + 5);
-	}
-	else {
-		m_sound.setPan(m_sound.getPanLeft() + 5, m_sound.getPanRight() - 5);
+		m_music.fadeOut(5000);
+		if (!m_music.isPlaying()) {
+			m_audio.removeMusic(&m_music);
+		}
 	}
 }
 

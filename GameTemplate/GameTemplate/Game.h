@@ -30,7 +30,7 @@ private:
 	// Objects
 	Crispin::Window m_window;
 	Crispin::AudioManager m_audio;
-	Crispin::Sound m_sound;
+	Crispin::Music m_music;
 	bool m_panMax;
 
 	Crispin::FpsLimiter m_timer;

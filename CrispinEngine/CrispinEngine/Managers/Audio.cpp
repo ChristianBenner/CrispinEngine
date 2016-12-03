@@ -3,6 +3,11 @@
 
 #include <SDL2\SDL.h>
 
+#pragma once
+
+#ifndef Audio_h__
+#define Audio_h__
+
 namespace Crispin {
 	void Sound::play(const int& loops) {
 		if (m_loaded) {
@@ -29,10 +34,68 @@ namespace Crispin {
 		}
 	}
 
+	void Sound::setVolume(const Uint8& volume) {
+		Mix_VolumeChunk(m_chunk, volume);
+		m_volume = volume;
+	}
+
 	void Sound::setPan(const Uint8& left, const Uint8& right) {
 		m_panLeft = left;
 		m_panRight = right;
 		Mix_SetPanning(m_channel, left, right);
+	}
+
+	void Sound::pause() {
+		Mix_Pause(m_channel);
+		m_paused = true;
+	}
+
+	void Sound::resume() {
+		Mix_Resume(m_channel);
+		m_paused = false;
+	}
+
+	void Sound::stop() {
+		Mix_HaltChannel(m_channel);
+		m_paused = true;
+	}
+
+	void Music::play(const int& loops) {
+		if (m_loaded) {
+			if (Mix_PlayMusic(m_music, loops) == -1) {
+				FatalError("SDL Music error: " + std::string(Mix_GetError()));
+			}
+		}
+	}
+
+	void Music::setVolume(const Uint8& volume) {
+		Mix_VolumeMusic(volume);
+		m_volume = volume;
+	}
+
+	void Music::pause() {
+		Mix_PauseMusic();
+		m_paused = true;
+	}
+
+	void Music::resume() {
+		Mix_ResumeMusic();
+		m_paused = false;
+	}
+
+	void Music::stop() {
+		Mix_HaltMusic();
+		m_paused = true;
+	}
+
+	void Music::fadeIn(const int& msTime, const int& loops) {
+		if (Mix_FadeInMusic(m_music, loops, msTime) == -1) {
+			Warning("SDL Mixer error: " + std::string(Mix_GetError()));
+		}
+	}
+
+	void Music::fadeOut(const int& msTime) {
+		Mix_FadeOutMusic(msTime);
 	}
 
 	AudioManager::AudioManager(){
@@ -48,12 +111,19 @@ namespace Crispin {
 			m_init = false;
 
 			Mix_HaltChannel(-1);
-			for (auto it = m_sfxCache.begin(); it != m_sfxCache.end(); ++it) {
+			for (auto it = m_chunkCache.begin(); it != m_chunkCache.end(); ++it) {
 				Mix_FreeChunk(it->second);
 				it->second = NULL;
 			}
+			
+			Mix_HaltMusic();
+			for (auto it = m_musicCache.begin(); it != m_musicCache.end(); ++it) {
+				Mix_FreeMusic(it->second);
+				it->second = NULL;
+			}
 
-			m_sfxCache.clear();
+			m_chunkCache.clear();
+			m_musicCache.clear();
 			Mix_CloseAudio();
 			Mix_Quit();
 		}
@@ -82,9 +152,9 @@ namespace Crispin {
 		Sound effect;
 
 		//Try to find audio in cache
-		auto it = m_sfxCache.find(filepath);
+		auto it = m_chunkCache.find(filepath);
 
-		if (it == m_sfxCache.end()) {
+		if (it == m_chunkCache.end()) {
 			//failed to find - create new sfx
 			Mix_Chunk* chunk = Mix_LoadWAV(filepath.c_str());
 
@@ -93,7 +163,7 @@ namespace Crispin {
 			}
 
 			//add sfx to cache
-			m_sfxCache[filepath] = chunk;
+			m_chunkCache[filepath] = chunk;
 			effect.m_chunk = chunk;
 		}
 		else {
@@ -106,17 +176,42 @@ namespace Crispin {
 		return effect;
 	}
 
+	Music AudioManager::loadMusic(const std::string& filepath) {
+		Music music;
+
+		auto it = m_musicCache.find(filepath);
+		if (it == m_musicCache.end()) {
+			Mix_Music* mixMusic = Mix_LoadMUS(filepath.c_str());
+
+			if (mixMusic == nullptr) {
+				FatalError("SDL Mixer error: " + std::string(Mix_GetError()));
+			}
+
+			m_musicCache[filepath] = mixMusic;
+			music.m_music = mixMusic;
+		}
+		else {
+			music.m_music = it->second;
+		}
+
+		music.m_filepath = filepath;
+		music.m_loaded = true;
+		return music;
+	}
+
 	void AudioManager::removeSound(Sound *sound) {
 		if (sound->m_loaded) {
-			auto it = m_sfxCache.find(sound->m_filepath);
-
 			Mix_HaltChannel(sound->m_channel);
 			Mix_FreeChunk(sound->m_chunk);
 			sound->m_chunk = NULL;
 			sound->m_loaded = false;
 
-			m_sfxCache.at(sound->m_filepath) == nullptr;
-			m_sfxCache.erase(sound->m_filepath);
+			m_chunkCache.at(sound->m_filepath) == nullptr;
+			m_chunkCache.erase(sound->m_filepath);
+		}
+		else {
+			Warning("Cannot remove sound that isn't loaded: "
+				+ std::string(sound->m_filepath.c_str()));
 		}
 	}
 
@@ -125,4 +220,22 @@ namespace Crispin {
 			removeSound(&(it->second));
 		}
 	}
+
+	void AudioManager::removeMusic(Music *music) {
+		if (music->m_loaded) {
+			Mix_HaltMusic();
+			InitializationStatement("Music is now free");
+			Mix_FreeMusic(music->m_music);
+			music->m_loaded = false;
+			music->m_music = NULL;
+
+			m_musicCache.at(music->m_filepath) == nullptr;
+			m_musicCache.erase(music->m_filepath);
+		}else{
+			Warning("Cannot remove music that isn't loaded: " 
+				+ std::string(music->m_filepath.c_str()));
+		}
+	}
 }
+
+#endif Audio_h__
