@@ -13,7 +13,7 @@ class IntroCrispin : public Stage
 {
 public:
 	// Provide the class with all the data it may need in pointers
-	IntroCrispin(Crispin::Window* window, Crispin::Audio* audio);
+	IntroCrispin(Crispin::Window* window, Crispin::AudioManager* audio);
 	~IntroCrispin();
 
 	void draw() override;
@@ -28,9 +28,9 @@ private:
 	bool m_init = false;
 
 	Crispin::Window* m_window;
-	Crispin::Audio* m_audio;
+	Crispin::AudioManager* m_audio;
 
-	Crispin::Sound* m_introSound;
+	Crispin::Sound m_introSound;
 	Crispin::SpriteBatch m_introBatch;
 	Crispin::Camera2D m_camera;
 	Crispin::Shader m_shader;

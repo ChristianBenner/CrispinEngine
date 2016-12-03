@@ -14,6 +14,8 @@ m_max_fps(60.0f)
 
 Game::~Game()
 {
+	m_audio.removeSound(&m_sound);
+	m_audio.destroy();
 }
 
 short Game::run(const int& argc, char* argv[]) {
@@ -41,7 +43,7 @@ short Game::init() {
 	// Audio engine
 	m_audio.init(MIX_INIT_OGG);
 	m_sound = m_audio.loadSound("Audio/SFX/test.wav");
-	m_sound->setPan(255, 0);
+	m_sound.setPan(255, 0);
 
 	// FPS Manager
 	m_timer.init(m_max_fps);
@@ -61,6 +63,8 @@ short Game::loop() {
 		processInput();
 
 		// Update and draw current stage
+		update();
+
 		bool onStage = false;
 		for (std::vector<StageData*>::iterator s = m_stages.begin(); s != m_stages.end()
 			&& !onStage; s++) {
@@ -79,36 +83,35 @@ short Game::loop() {
 		// Buffer swap
 		m_window.swapBuffer();
 
-		if (m_input.isKeyPressed(SDLK_a)) {
-			//m_sound.setPan(255, 0);
-			m_sound->play(-1);
-		}
-		if (m_input.isKeyPressed(SDLK_s)) {
-			//m_sound.setPan(0, 255);
-			//m_sound.play(0);
-			m_audio.~Audio();
-		}
-		
-		if (m_sound->getPanLeft() >= 255) {
-			m_panMax = true;
-		}
-		else if (m_sound->getPanLeft() <= 0) {
-			m_panMax = false;
-		}
-
-		if (m_panMax) {
-			m_sound->setPan(m_sound->getPanLeft() - 5, m_sound->getPanRight() + 5);
-		}
-		else {
-			m_sound->setPan(m_sound->getPanLeft() + 5, m_sound->getPanRight() - 5);
-		}
-
-		printf("Pan: %d\n", m_sound->getPanLeft());
-		
 		// End FPS management
 		m_current_fps = m_timer.end();
 	}
 	return 0;
+}
+
+// Game core update function, will update all the time
+void Game::update() {
+	// Sound sound interaction
+	if (m_input.isKeyPressed(SDLK_a)) {
+		m_sound.play(-1);
+	}
+	if (m_input.isKeyPressed(SDLK_s)) {
+		m_audio.removeSound(&m_sound);
+	}
+
+	if (m_sound.getPanLeft() >= 255) {
+		m_panMax = true;
+	}
+	else if (m_sound.getPanLeft() <= 0) {
+		m_panMax = false;
+	}
+
+	if (m_panMax) {
+		m_sound.setPan(m_sound.getPanLeft() - 5, m_sound.getPanRight() + 5);
+	}
+	else {
+		m_sound.setPan(m_sound.getPanLeft() + 5, m_sound.getPanRight() - 5);
+	}
 }
 
 void Game::processInput() {

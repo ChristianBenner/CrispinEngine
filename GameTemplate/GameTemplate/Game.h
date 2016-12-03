@@ -25,11 +25,12 @@ private:
 	short init(),
 		loop();
 	void processInput();
+	void update();
 
 	// Objects
 	Crispin::Window m_window;
-	Crispin::Audio m_audio;
-	Crispin::Sound *m_sound;
+	Crispin::AudioManager m_audio;
+	Crispin::Sound m_sound;
 	bool m_panMax;
 
 	Crispin::FpsLimiter m_timer;

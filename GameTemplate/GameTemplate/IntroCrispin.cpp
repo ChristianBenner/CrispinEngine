@@ -1,6 +1,6 @@
 #include "IntroCrispin.h"
 
-IntroCrispin::IntroCrispin(Crispin::Window* window, Crispin::Audio* audio)
+IntroCrispin::IntroCrispin(Crispin::Window* window, Crispin::AudioManager* audio)
 {
 	// Pass through pointers to variables that will be used in initialization process
 	m_window = window;
@@ -10,11 +10,7 @@ IntroCrispin::IntroCrispin(Crispin::Window* window, Crispin::Audio* audio)
 void IntroCrispin::destroy()
 {
 	// Remove loaded audio
-	m_audio->removeSound(m_introSound);
-	// Remove unloaded elements from map
-	m_audio->removeUnloadedElements();
-	/// OR remove data from map if extra picky about memory
-	m_audio->removeElement(m_introSound->getID());
+	m_audio->removeSound(&m_introSound);
 }
 
 void IntroCrispin::init() {
@@ -32,7 +28,7 @@ void IntroCrispin::init() {
 	m_tex_logoWhite = Crispin::Resource::getTexture("Textures/logo/crispin_flat_white.png");
 	m_tex_logoRed = Crispin::Resource::getTexture("Textures/logo/crispin_flat_red.png");
 
-	m_introSound->play();
+	m_introSound.play();
 }
 
 void IntroCrispin::initShaders() {
