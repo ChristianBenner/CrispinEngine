@@ -224,7 +224,6 @@ namespace Crispin {
 	void AudioManager::removeMusic(Music *music) {
 		if (music->m_loaded) {
 			Mix_HaltMusic();
-			InitializationStatement("Music is now free");
 			Mix_FreeMusic(music->m_music);
 			music->m_loaded = false;
 			music->m_music = NULL;

@@ -8,7 +8,7 @@ namespace Crispin {
 		return m_textureCache.getTexture(filepath);
 	}
 
-	void Resource::removeTexture(std::string filepath) {
-		m_textureCache.removeTexture(filepath);
+	void Resource::removeTexture(GLTexture* tex) {
+		m_textureCache.removeTexture(tex->filepath);
 	}
 }

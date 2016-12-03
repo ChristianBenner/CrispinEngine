@@ -28,7 +28,7 @@ namespace Crispin {
 	{
 	public:
 		static GLTexture getTexture(std::string filepath);
-		static void removeTexture(std::string filepath);
+		static void removeTexture(GLTexture* te);
 		//	static GLuint boundTexture;
 	private:
 		static TextureCache m_textureCache;

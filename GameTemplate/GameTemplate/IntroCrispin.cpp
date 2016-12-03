@@ -11,6 +11,8 @@ void IntroCrispin::destroy()
 {
 	// Remove loaded audio
 	m_audio->removeSound(&m_introSound);
+	Crispin::Resource::removeTexture(&m_tex_logoRed);
+	Crispin::Resource::removeTexture(&m_tex_logoWhite);
 }
 
 void IntroCrispin::init() {
