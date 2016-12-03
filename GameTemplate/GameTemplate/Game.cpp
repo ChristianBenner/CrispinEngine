@@ -1,6 +1,7 @@
 // Local imports
 #include "Game.h"
-#include "IntroCrispin.h"
+//#include "IntroCrispin.h"
+#include <CrispinEngine\CrispinIntro.h>
 
 // Library/engine imports
 #include <CrispinEngine\Managers\Engine.h>
@@ -36,7 +37,7 @@ short Game::init() {
 	Crispin::init();
 
 	// Window
-	m_window.create(m_game_name, m_window_width, m_window_height, NULL);
+	m_window.create(m_game_name, m_window_width, m_window_height, Crispin::INVISIBLE);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	SDL_GL_SetSwapInterval(1);
 
@@ -48,8 +49,7 @@ short Game::init() {
 	m_timer.init(m_max_fps);
 
 	// Stages to array
-	m_stages.push_back(new SceneData(new IntroCrispin(&m_window, &m_audio), 0));
-
+	m_stages.push_back(new SceneData(new Crispin::Scene::CrispinIntro(&m_window, &m_audio), 0));
 	return 0;
 }
 
@@ -74,6 +74,7 @@ short Game::loop() {
 					(*s)->p_stage->destroy();
 					(*s)->p_stage = nullptr;
 				}else{
+					m_window.setVisible(true);
 					(*s)->p_stage->draw();
 				}
 			}

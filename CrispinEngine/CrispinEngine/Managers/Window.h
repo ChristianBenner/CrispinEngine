@@ -38,7 +38,7 @@ namespace Crispin {
 		Window();
 		~Window();
 
-		int create(std::string windowName, int screenWidth, int screenHeight, unsigned int currentFlags);
+		int create(std::string windowName, int screenWidth, int screenHeight, unsigned int currentFlags = NULL);
 
 		void swapBuffer();
 		void showMouse(bool show);

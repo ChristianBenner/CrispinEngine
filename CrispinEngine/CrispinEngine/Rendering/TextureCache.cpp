@@ -14,10 +14,8 @@ namespace Crispin {
 
 
 	GLTexture TextureCache::getTexture(std::string texturePath) {
-
 		//lookup the texture and see if its in the map
 		auto mit = m_textureMap.find(texturePath);
-
 		//check if its not in the map
 		if (mit == m_textureMap.end()) {
 			//Load the texture

@@ -9,6 +9,7 @@ GLTexture Image::loadPNG(std::string filepath) {
 	if (FileIO::readFileToBuffer(filepath, in) == false) {
 		FatalError("Could not read PNG to buffer");
 	}
+
 	int err = decodePNG(out, width, height, &(in[0]), in.size(), true);
 	if (err != 0) {
 		FatalError("PNG Decode failed [" + filepath + "]");
