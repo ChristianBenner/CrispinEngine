@@ -107,9 +107,9 @@ namespace Crispin {
 			const glm::vec4 uvRect(0.0f, 0.0f, 1.0f, 1.0f);
 			glm::vec4 destRect = glm::vec4(-m_window->getScreenWidth() / 2.0f, -m_window->getScreenHeight() / 2.0f, m_window->getScreenWidth(), m_window->getScreenHeight());
 
-			m_introBatch.draw(destRect, uvRect, m_tex_logoRed.ID, 0.0f, Crispin::ColorRGBA8(255, 255, 255, alpha));
+			m_introBatch.draw(destRect, uvRect, m_tex_logoRed.ID, 0.0f, Crispin::ColorRGBA8(255, 255, 255, (GLubyte)alpha));
 			if (m_intro_clock < 255.0f) {
-				m_introBatch.draw(destRect, uvRect, m_tex_logoWhite.ID, 0.0f, Crispin::ColorRGBA8(255, 255, 255, 255 - alpha));
+				m_introBatch.draw(destRect, uvRect, m_tex_logoWhite.ID, 0.0f, Crispin::ColorRGBA8(255, 255, 255, 255 - (GLubyte)alpha));
 			}
 
 			m_introBatch.end();

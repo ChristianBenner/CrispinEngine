@@ -206,7 +206,7 @@ namespace Crispin {
 			sound->m_chunk = NULL;
 			sound->m_loaded = false;
 
-			m_chunkCache.at(sound->m_filepath) == nullptr;
+			m_chunkCache.at(sound->m_filepath) = nullptr;
 			m_chunkCache.erase(sound->m_filepath);
 		}
 		else {
@@ -228,7 +228,7 @@ namespace Crispin {
 			music->m_loaded = false;
 			music->m_music = NULL;
 
-			m_musicCache.at(music->m_filepath) == nullptr;
+			m_musicCache.at(music->m_filepath) = nullptr;
 			m_musicCache.erase(music->m_filepath);
 		}else{
 			Warning("Cannot remove music that isn't loaded: " 

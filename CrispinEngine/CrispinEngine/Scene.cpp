@@ -57,5 +57,20 @@ namespace Crispin {
 			Crispin::Warning("The specified scene ID doesn't match any scenes in SceneManager");
 			return false;
 		}
+
+		// Run overlay scene e.g. options pane
+		if (m_overlayScene != nullptr) {
+			if (!m_overlayScene->p_stage->update(currentSceneID)) {
+				m_overlayScene->p_stage->destroy();
+				m_overlayScene->p_stage = nullptr;
+			}
+			else {
+				m_overlayScene->p_stage->draw();
+			}
+		}
+	}
+
+	void SceneManager::setOverlay(SceneData *sceneData) {
+		m_overlayScene = sceneData;
 	}
 }

@@ -64,7 +64,7 @@ namespace Crispin {
 			if (!m_timeCalculated) {
 				printf("Delta[%f], Size[%d], FPS[%d]\n",
 					m_deltaTime,
-					m_occurences.size(),
+					(int)m_occurences.size(),
 					m_uploadFPS);
 			}
 
@@ -164,7 +164,7 @@ namespace Crispin {
 		Uint32 currentTicks = SDL_GetTicks();
 
 		m_frame_time = currentTicks - prevtick;
-		frameTimes[currentFrame % NUM_SAMPLES] = m_frame_time;
+		frameTimes[currentFrame % NUM_SAMPLES] = (float)m_frame_time;
 
 		prevtick = currentTicks;
 		int count;

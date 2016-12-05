@@ -43,6 +43,6 @@ namespace Crispin {
 		unsigned int m_startTicks;
 		float m_maxFPS;
 		float m_FPS;
-		float m_frame_time;
+		Uint32 m_frame_time;
 	};
 }

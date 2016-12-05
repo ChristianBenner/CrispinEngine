@@ -38,7 +38,7 @@ namespace Crispin {
 		Uint32 currentTicks = SDL_GetTicks();
 
 		m_frame_time = currentTicks - prevtick;
-		frameTimes[currentFrame % NUM_SAMPLES] = m_frame_time;
+		frameTimes[currentFrame % NUM_SAMPLES] = (float)m_frame_time;
 
 		prevtick = currentTicks;
 		int count;

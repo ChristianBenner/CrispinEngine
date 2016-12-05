@@ -87,7 +87,7 @@ namespace Crispin {
 
 		void calculateFPS();
 		float m_FPS = 60.0f;
-		float m_frame_time;
+		Uint32 m_frame_time;
 	};
 }
 

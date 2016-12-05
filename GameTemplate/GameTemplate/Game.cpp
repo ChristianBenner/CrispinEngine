@@ -6,6 +6,7 @@
 // Library/engine imports
 #include <CrispinEngine\Managers\Engine.h>
 
+// Initialize some variables
 Game::Game() : m_game_name("My Game"),
 m_window_width(1280),
 m_window_height(720),
@@ -15,6 +16,7 @@ m_max_fps(60.0f)
 
 Game::~Game()
 {
+	// Remove what is no longer needed to free memory
 	m_audio.removeMusic(&m_music);
 	m_audio.destroy();
 }
@@ -48,7 +50,7 @@ short Game::init() {
 	// FPS Manager
 	m_timer.init(m_max_fps);
 
-	// Stages to array
+	// Add stages to SceneManager
 	m_sceneManager.add(new Crispin::SceneData(new Crispin::Scenes::CrispinIntro(&m_window, &m_audio), 0));
 	return 0;
 }
@@ -64,8 +66,9 @@ short Game::loop() {
 		// Update and draw current stage
 		update();
 
-		// If the scene is running, show the window
+		// Run the current scene
 		if (m_sceneManager.run(&m_currentStage)) {
+			// Set window to visible if the scene is running
 			m_window.setVisible(true);
 		}
 
@@ -80,8 +83,9 @@ short Game::loop() {
 
 // Game core update function, will update all the time
 void Game::update() {
-	// Music interaction
+	// Keyboard input usage example
 	if (m_input.isKeyPressed(SDLK_a)) {
+		// Music interaction example (-1 = loop forever)
 		m_music.play(-1);
 	}
 	if (m_input.isKeyPressed(SDLK_s)) {
@@ -92,6 +96,7 @@ void Game::update() {
 	}
 }
 
+// Here you specify what inputs (supported by SDL) that you want to listen to
 void Game::processInput() {
 	m_input.update();
 

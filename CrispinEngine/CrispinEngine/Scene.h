@@ -20,6 +20,7 @@ Author: Christian Benner
 Email: christianbenner35@gmail.com
 */
 
+/// TODO: ADD A SEPERATE 'OVERLAY' SCENE - Works same way and when not in use = nullptr
 #pragma once
 #include <map>
 #include "Managers\Audio.h"
@@ -36,15 +37,6 @@ namespace Crispin {
 		virtual void draw() = 0;
 		virtual bool update(short* currentStage) = 0;
 		virtual void destroy() = 0;
-
-	protected:
-		/*
-		Not sure about this:
-		// Holds data that the stage will automatically free when destroyed
-		std::map<int, Crispin::Sound> m_sounds;
-		std::map<int, Crispin::Music> m_music;
-		std::map<int, Crispin::GLTexture> m_textures;
-		*/
 	};
 
 	class SceneData {
@@ -65,8 +57,12 @@ namespace Crispin {
 
 		// Run a specified scene - returns successful boolean
 		bool run(short* currentSceneID);
+
+		// Do not specify a scene if want to clear overlay
+		void setOverlay(SceneData *sceneData = nullptr);
 	private:
 		SceneData* m_currentScene = nullptr;
+		SceneData* m_overlayScene = nullptr;
 		std::vector<SceneData*> m_scenes;
 	};
 }
