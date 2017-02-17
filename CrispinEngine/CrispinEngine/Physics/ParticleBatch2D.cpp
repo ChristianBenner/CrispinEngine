@@ -38,7 +38,7 @@ namespace Crispin {
 			auto& p = m_particles[i];
 			if (p.lifePeriod > 0.0f) {
 				glm::vec4 dest(p.position.x, p.position.y, p.size, p.size);
-				spriteBatch->draw(dest, uv, m_texture.ID, 0.0f, p.color);
+				spriteBatch->draw(dest, uv, m_texture.ID, 0.0f, p.color, p.angle);
 			}
 		}
 	}
@@ -46,7 +46,8 @@ namespace Crispin {
 	void ParticleBatch2D::addParticle(const glm::vec2& position,
 		const glm::vec2& velocity,
 		const ColorRGBA8& color,
-		const float& size) {
+		const float& size,
+		const float& angle) {
 
 		int particleIndex = findFreeParticle();
 		auto& p = m_particles[particleIndex];
@@ -55,6 +56,7 @@ namespace Crispin {
 		p.velocity = velocity;
 		p.color = color;
 		p.size = size;
+		p.angle = angle;
 	}
 
 	int ParticleBatch2D::findFreeParticle() {

@@ -1,4 +1,4 @@
-#include "timing.h"
+#include "Managers\Timing.h"
 
 namespace Crispin {
 	FpsLimiter::FpsLimiter() {

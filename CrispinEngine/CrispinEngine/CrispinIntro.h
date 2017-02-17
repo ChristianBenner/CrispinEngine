@@ -14,7 +14,7 @@ namespace Crispin {
 			CrispinIntro(Crispin::Window* window, Crispin::AudioManager* audio);
 
 			void draw() override;
-			bool update(short* currentStage) override;
+			bool update() override;
 
 			// Call init if want to initiate early, otherwise it's called automatically
 			void init();

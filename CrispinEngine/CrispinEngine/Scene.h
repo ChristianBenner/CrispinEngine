@@ -35,28 +35,36 @@ namespace Crispin {
 		Scene();
 
 		virtual void draw() = 0;
-		virtual bool update(short* currentStage) = 0;
+		virtual bool update() = 0;
 		virtual void destroy() = 0;
+
+		int p_nextStage = -1;
 	};
 
 	class SceneData {
 	public:
-		SceneData(Scene* stage, short ID) {
+		SceneData(Scene* stage, int ID, int nextStage = -1) {
 			p_stage = stage;
 			p_ID = ID;
+			p_stage->p_nextStage = nextStage;
 		}
 
+		int getNextStage() { return p_stage->p_nextStage; }
+
 		Scene* p_stage;
-		short p_ID;
+		int p_ID;
 	};
 
 	class SceneManager {
 	public:
+		// Set the current stage
+		void setStage(const int& sceneID);
+
 		// Add a scene to the list of scenes
 		void add(SceneData *sceneData);
 
 		// Run a specified scene - returns successful boolean
-		bool run(short* currentSceneID);
+		bool run();
 
 		// Do not specify a scene if want to clear overlay
 		void setOverlay(SceneData *sceneData = nullptr);
@@ -64,5 +72,7 @@ namespace Crispin {
 		SceneData* m_currentScene = nullptr;
 		SceneData* m_overlayScene = nullptr;
 		std::vector<SceneData*> m_scenes;
+
+		int m_currentID = 0;
 	};
 }

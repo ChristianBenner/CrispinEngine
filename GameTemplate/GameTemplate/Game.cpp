@@ -1,9 +1,8 @@
 // Local imports
 #include "Game.h"
-//#include "IntroCrispin.h"
-#include <CrispinEngine\CrispinIntro.h>
 
 // Library/engine imports
+#include <CrispinEngine\CrispinIntro.h>
 #include <CrispinEngine\Managers\Engine.h>
 
 // Initialize some variables

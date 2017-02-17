@@ -36,6 +36,7 @@ namespace Crispin {
 		ColorRGBA8 color;
 		float lifePeriod = 0.0f;
 		float size = 0.0f;
+		float angle = 0.0f;
 	};
 
 	inline void defaultParticleUpdate(Particle2D& particle, float deltaTime) {
@@ -60,7 +61,8 @@ namespace Crispin {
 		void addParticle(const glm::vec2& position, 
 			const glm::vec2& velocity,
 			const ColorRGBA8& color,
-			const float& size); //find particle in array and set to active
+			const float& size,
+			const float& angle = 0.0f); //find particle in array and set to active
 	private:
 		int findFreeParticle();
 

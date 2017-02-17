@@ -48,6 +48,7 @@ namespace Crispin {
 		Glyph(const glm::vec4& DestRect, const glm::vec4& UvRect, GLuint Texture, const float& Depth, const ColorRGBA8& Color, float angle, bool flip = false);
 
 		Glyph(const AbstractPiece& dimensions, const glm::vec4& UvRect, const float& Depth, const ColorRGBA8& Color, bool flip = false);
+		Glyph(const AbstractPieceColour& vertices, const glm::vec4& UvRect, const float& Depth, bool flip = false);
 
 		GLuint texture;
 		float depth;
@@ -64,12 +65,13 @@ namespace Crispin {
 	// Each render batch is used for a single draw call
 	class RenderBatch {
 	public:
-		RenderBatch(GLuint Offset, GLuint NumVertices, GLuint Texture) : offset(Offset),
-			numVertices(NumVertices), texture(Texture) {
+		RenderBatch(GLuint Offset, GLuint NumVertices, GLuint Texture, int TextureUnit = 0x84C0) : offset(Offset),
+			numVertices(NumVertices), texture(Texture), textureUnit(TextureUnit) {
 		}
 		GLuint offset;
 		GLuint numVertices;
 		GLuint texture;
+		int textureUnit = 0x84C0;
 	};
 
 	// The SpriteBatch class is a more efficient way of drawing sprites
@@ -94,6 +96,7 @@ namespace Crispin {
 		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const ColorRGBA8& color, const glm::vec2& dir, bool flip = false);
 
 		void draw(const AbstractPiece& dimensions, const glm::vec4& uvRect, float depth, const ColorRGBA8& color, bool flip = false);
+		void draw(const AbstractPieceColour& vertices, const glm::vec4& uvRect, float depth, bool flip = false);
 
 		// Renders the entire SpriteBatch to the screen
 		void renderBatch();

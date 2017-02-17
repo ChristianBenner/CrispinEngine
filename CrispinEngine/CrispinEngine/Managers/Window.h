@@ -46,6 +46,8 @@ namespace Crispin {
 
 		int getScreenWidth() { return m_screenWidth; }
 		int getScreenHeight() { return m_screenHeight; }
+
+		void destroy();
 	private:
 		SDL_Window* m_sdlWindow;
 		int m_screenWidth;

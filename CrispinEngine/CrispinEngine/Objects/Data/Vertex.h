@@ -6,6 +6,12 @@ namespace Crispin {
 	struct Position {
 		float x, y;
 
+		Position() {}
+		Position(float X, float Y) {
+			x = X;
+			y = Y;
+		}
+
 		void setPosition(float X, float Y) {
 			x = X;
 			y = Y;
@@ -32,7 +38,7 @@ namespace Crispin {
 
 	struct Vertex {
 		Position pos;
-		ColorRGBA8 col;
+		ColorRGBA8 col = ColorRGBA8(255, 255, 255, 255);
 		UV uv;
 
 		void setPosition(float X, float Y) {
@@ -47,12 +53,25 @@ namespace Crispin {
 			pos.setPosition(X, Y);
 			uv.setUV(U, V);
 		}
+
+		void setColour(const Crispin::ColorRGBA8& colour) {
+			col = colour;
+		}
 	};
 
 	class AbstractPiece {
 	public:
 		AbstractPiece() {}
 		Position v1, v2, v3, v4;
+
+		GLint textureID;
+		int specificID;
+	};
+
+	class AbstractPieceColour {
+	public:
+		AbstractPieceColour() {}
+		Vertex v1, v2, v3, v4;
 
 		GLint textureID;
 		int specificID;

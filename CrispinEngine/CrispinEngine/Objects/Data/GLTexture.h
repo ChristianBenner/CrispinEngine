@@ -7,6 +7,7 @@ namespace Crispin {
 		GLuint ID;
 		int width;
 		int height;
+		int textureUnit = 0;
 
 		std::string filepath;
 	};

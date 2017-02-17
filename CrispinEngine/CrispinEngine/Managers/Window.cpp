@@ -13,6 +13,11 @@ namespace Crispin {
 		// Empty
 	}
 
+	void Window::destroy() {
+		SDL_DestroyRenderer(SDL_GetRenderer(m_sdlWindow));
+		SDL_DestroyWindow(m_sdlWindow);
+	}
+
 	int Window::create(std::string windowName, int screenWidth, int screenHeight, unsigned int currentFlags) {
 		// More advanced screen sizing stuff when resize
 		m_screenHeight = screenHeight;

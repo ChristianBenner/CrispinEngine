@@ -46,7 +46,7 @@ namespace Crispin {
 		}
 
 		const float STAGE_DURATION = 6; //seconds
-		bool CrispinIntro::update(short* currentStage) {
+		bool CrispinIntro::update() {
 			// Check if stage has been initiated
 			if (!m_init) {
 				init();
@@ -55,7 +55,6 @@ namespace Crispin {
 
 			// Change to the next appropriate stage
 			if (m_intro_time > STAGE_DURATION * 60) {
-				*currentStage = 1;
 				m_init = false;
 				return false;
 			}

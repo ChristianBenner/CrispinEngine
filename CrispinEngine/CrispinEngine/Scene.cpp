@@ -10,7 +10,7 @@ namespace Crispin {
 
 	}
 
-	bool Scene::update(short* currentStage) {
+	bool Scene::update() {
 		return true;
 	}
 
@@ -18,14 +18,22 @@ namespace Crispin {
 
 	}
 
+	void SceneManager::setStage(const int& sceneID) {
+		m_currentID = sceneID;
+	}
+
 	void SceneManager::add(SceneData *sceneData) {
 		m_scenes.push_back(sceneData);
 	}
 
-	bool SceneManager::run(short* currentSceneID) {
+	bool SceneManager::run() {
+		if (m_currentID == -1) {
+			return false;
+		}
+
 		bool useCurrent = false;
 		if (m_currentScene != nullptr) {
-			if (m_currentScene->p_ID == *currentSceneID) {
+			if (m_currentScene->p_ID == m_currentID) {
 				// Awesome! We can run the scene without any drawback
 				useCurrent = true;
 			}
@@ -33,7 +41,7 @@ namespace Crispin {
 
 		// Load new (if useCurrent = false)
 		for (auto it = m_scenes.begin(); it != m_scenes.end() && !useCurrent; ++it) {
-			if ((*it)->p_ID == *currentSceneID) {
+			if ((*it)->p_ID == m_currentID) {
 				//Found
 				useCurrent = true;
 				m_currentScene = (*it);
@@ -42,7 +50,8 @@ namespace Crispin {
 
 		if (useCurrent) {
 			// RUN! :D
-			if (!m_currentScene->p_stage->update(currentSceneID)) {
+			if (!m_currentScene->p_stage->update()) {
+				m_currentID = m_currentScene->getNextStage();
 				m_currentScene->p_stage->destroy();
 				m_currentScene->p_stage = nullptr;
 			}
@@ -60,7 +69,7 @@ namespace Crispin {
 
 		// Run overlay scene e.g. options pane
 		if (m_overlayScene != nullptr) {
-			if (!m_overlayScene->p_stage->update(currentSceneID)) {
+			if (!m_overlayScene->p_stage->update()) {
 				m_overlayScene->p_stage->destroy();
 				m_overlayScene->p_stage = nullptr;
 			}

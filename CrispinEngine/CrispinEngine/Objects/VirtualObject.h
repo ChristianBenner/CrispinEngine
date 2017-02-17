@@ -61,7 +61,9 @@ namespace Crispin {
 		ColorRGBA8 getColour();
 
 		void setTexture(GLint textureID);
-
+		GLint getTexture() {
+			return m_textureID;
+		}
 	protected:
 		// Positional data
 		std::vector<glm::vec2> m_vertices;

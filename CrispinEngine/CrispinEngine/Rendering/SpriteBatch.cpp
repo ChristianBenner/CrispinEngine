@@ -64,6 +64,10 @@ namespace Crispin {
 		m_glyphs.emplace_back(Glyph(dimensions, uvRect, depth, color, flip));
 	}
 
+	void SpriteBatch::draw(const AbstractPieceColour& vertices, const glm::vec4& uvRect, float depth, bool flip) {
+		m_glyphs.emplace_back(Glyph(vertices, uvRect, depth, flip));
+	}
+
 	void SpriteBatch::renderBatch() {
 
 		// Bind array object. This sets up the opengl state, including the 
@@ -71,6 +75,7 @@ namespace Crispin {
 		glBindVertexArray(m_vao);
 
 		for (int i = 0; i < m_renderBatches.size(); i++) {
+			glActiveTexture(m_renderBatches[i].textureUnit);
 			glBindTexture(GL_TEXTURE_2D, m_renderBatches[i].texture);
 			glDrawArrays(GL_TRIANGLES, m_renderBatches[i].offset, m_renderBatches[i].numVertices);
 		}
@@ -288,6 +293,34 @@ namespace Crispin {
 
 		topRight.col = Color;
 		topRight.setPosition(dimensions.v4.x, dimensions.v4.y);
+
+		if (!flip) {
+			topLeft.setUV(UvRect.x, UvRect.y + UvRect.w);
+			bottomLeft.setUV(UvRect.x, UvRect.y);
+			bottomRight.setUV(UvRect.x + UvRect.z, UvRect.y);
+			topRight.setUV(UvRect.x + UvRect.z, UvRect.y + UvRect.w);
+		}
+		else {
+			topLeft.setUV(UvRect.x + UvRect.z, UvRect.y + UvRect.w);
+			bottomLeft.setUV(UvRect.x + UvRect.z, UvRect.y);
+			bottomRight.setUV(UvRect.x, UvRect.y);
+			topRight.setUV(UvRect.x, UvRect.y + UvRect.w);
+		}
+	}
+
+	Glyph::Glyph(const AbstractPieceColour& vertices, const glm::vec4& UvRect, const float& Depth, bool flip)
+		: texture(vertices.textureID), depth(Depth) {
+		topLeft.col = vertices.v1.col;
+		topLeft.setPosition(vertices.v1.pos.x, vertices.v1.pos.y);
+
+		bottomLeft.col = vertices.v2.col;
+		bottomLeft.setPosition(vertices.v2.pos.x, vertices.v2.pos.y);
+
+		bottomRight.col = vertices.v3.col;
+		bottomRight.setPosition(vertices.v3.pos.x, vertices.v3.pos.y);
+
+		topRight.col = vertices.v4.col;
+		topRight.setPosition(vertices.v4.pos.x, vertices.v4.pos.y);
 
 		if (!flip) {
 			topLeft.setUV(UvRect.x, UvRect.y + UvRect.w);
